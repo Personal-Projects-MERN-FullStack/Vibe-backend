@@ -1,16 +1,25 @@
 // Import required modules
 const express = require('express');
+const app = express()
+const cors = require('cors')
+const bodyparser = require("body-parser");
+const connectToMongo = require('./database/db');
 
-// Create an instance of the Express application
-const app = express();
+// Importing the Routes
+const authroutes = require("./routes/auth")
+// creating the use cases
+app.use(cors())
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(express.json());
 
-// Define a route handler for the root URL
+app.use('/auth',authroutes)
 app.get('/', (req, res) => {
-  res.send('Hello, World!');
+  res.send("hellow world");
 });
 
+
 // Start the server
-const port = 3000;
+const port = 5000;
 app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
+  connectToMongo()
 });
