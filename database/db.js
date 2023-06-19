@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const mongoURI =
-  "mongodb+srv://vibeuser1:vaibhav@cluster0.9qofxzb.mongodb.net/";
+  "mongodb+srv://vibeuser1:vaibhav@cluster0.9qofxzb.mongodb.net/vibebackend?retryWrites=true&w=majority";
 // const mongoURI = "mongodb://localhost:27017/vibebackend";
 
 const connectToMongo = () => {
