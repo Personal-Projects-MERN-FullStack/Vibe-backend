@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-// const mongoURI = 'mongodb+srv://spv:vaibhavprasadsainath@cluster0.exmgbgb.mongodb.net/labourconnect?retryWrites=true&w=majority'
-const mongoURI = "mongodb://localhost:27017/vibebackend";
-
+const mongoURI =
+  "mongodb+srv://vibeuser1:vaibhav@cluster0.9qofxzb.mongodb.net/";
+// const mongoURI = "mongodb://localhost:27017/vibebackend";
 
 const connectToMongo = () => {
   mongoose.connect(mongoURI);
@@ -16,5 +16,3 @@ const connectToMongo = () => {
 };
 
 module.exports = connectToMongo;
-
-

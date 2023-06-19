@@ -7,12 +7,15 @@ const connectToMongo = require('./database/db');
 
 // Importing the Routes
 const authroutes = require("./routes/auth")
+const Products = require('./routes/Products')
 // creating the use cases
 app.use(cors())
+
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use('/auth',authroutes)
+app.use('/product',Products)
 app.get('/', (req, res) => {
   res.send("hellow world");
 });
