@@ -1,6 +1,6 @@
 const express = require("express");
 const Product = require("../models/Product");
-const router = express.Router(); // You missed the parentheses here
+const router = express.Router(); 
 
 router.post("/getproducts", async (req, res) => {
  
