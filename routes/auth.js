@@ -36,7 +36,7 @@ router.post("/CreateUser", async (req, res) => {
       },
     };
     const authtoken = jwt.sign(data, JWT_SECRET);
-    res.json({ success: true, authtoken });
+    res.json({ success: true, authtoken ,user :{name:user.name,email:user,email}});
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Some error occurred");
@@ -62,6 +62,7 @@ router.post(
     const { email, password } = req.body;
     try {
       let user = await User.findOne({ email });
+      console.log(user)
       if (!user) {
         return res.status(400).json({
           success,
@@ -83,7 +84,7 @@ router.post(
       };
       const authtoken = jwt.sign(data, JWT_SECRET);
       success = true;
-      res.json({ success, authtoken });
+      res.json({ success, authtoken,user :{name:user.name,email:user,email}});
     } catch (error) {
       console.error(error.message);
       success = false;
