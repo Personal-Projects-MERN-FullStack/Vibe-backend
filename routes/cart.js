@@ -19,6 +19,8 @@ router.get("/getcart/:user_id", async (req, res) => {
 router.post("/addtocart/:user_id", async (req, res) => {
   try {
     const { userId, items } = req.body;
+    // console.log(req.body.userId)
+    
     const cartId = Math.floor(Math.random() * (9999 - 1000) + 1000);
     // Check if cart already exists
     let cart = await Cart.findOne({ userId });

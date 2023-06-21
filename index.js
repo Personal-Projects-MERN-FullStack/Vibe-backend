@@ -9,6 +9,7 @@ const connectToMongo = require('./database/db');
 const authroutes = require("./routes/auth")
 const Products = require('./routes/Products')
 const Cart = require('./routes/cart')
+const Address = require('./routes/Address')
 // creating the use cases
 app.use(cors())
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use('/auth',authroutes)
 app.use('/product',Products)
 app.use('/cart',Cart)
+app.use('/address',Address)
 
 
 app.get('/', (req, res) => {
