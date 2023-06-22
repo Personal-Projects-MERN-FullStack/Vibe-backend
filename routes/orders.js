@@ -64,7 +64,7 @@ router.get("/getorderbycustomerid/:customerid", async (req, res) => {
 
 router.post("/orders", async (req, res) => {
   try {
-    const { customerid, orders, totalbill ,Address} = req.body;
+    const { customerid, orders, totalbill ,Address,paymentstatus} = req.body;
 
     // Generate a 10-digit order ID
     const orderid = generateOrderId();
@@ -75,7 +75,8 @@ router.post("/orders", async (req, res) => {
       customerid,
       orders,
       totalbill,
-      Address
+      Address,
+      paymentstatus
     });
 
     // Save the new order
