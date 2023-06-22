@@ -36,13 +36,16 @@ router.post("/CreateUser", async (req, res) => {
       },
     };
     const authtoken = jwt.sign(data, JWT_SECRET);
-    res.json({ success: true, authtoken ,user :{name:user.name,email:user,email}});
+    res.json({
+      success: true,
+      authtoken,
+      user: { name: user.name, email: user, email },
+    });
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Some error occurred");
   }
 });
-
 
 //ROUTE : 2 Authonticate a user using : post "api/auth/login"
 
@@ -62,7 +65,7 @@ router.post(
     const { email, password } = req.body;
     try {
       let user = await User.findOne({ email });
-      console.log(user)
+      console.log(user);
       if (!user) {
         return res.status(400).json({
           success,
@@ -84,7 +87,11 @@ router.post(
       };
       const authtoken = jwt.sign(data, JWT_SECRET);
       success = true;
-      res.json({ success, authtoken,user :{name:user.name,email:user,email}});
+      res.json({
+        success,
+        authtoken,
+        user: { name: user.name, email: user, email },
+      });
     } catch (error) {
       console.error(error.message);
       success = false;
@@ -103,6 +110,23 @@ router.post("/getuser", fetchuser, async (req, res) => {
     console.error(error.message);
     res.status(500).send("Internal Server Error");
   }
+});
+
+router.post("/updateuser/:email", (req, res) => {
+  const email = req.params.email;
+  const newFullName = req.body.fullName;
+
+  User.findOneAndUpdate({ email }, { name: newFullName }, { new: true })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+      return res.json(user);
+    })
+    .catch((error) => {
+      console.error("Error updating user:", error);
+      return res.status(500).json({ error: "Internal server error" });
+    });
 });
 
 // router.post(
