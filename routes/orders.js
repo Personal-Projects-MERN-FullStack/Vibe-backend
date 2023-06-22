@@ -47,20 +47,21 @@ router.get("/getorderbycustomerid/:customerid", async (req, res) => {
   try {
     const customerid = req.params.customerid;
 
-    // Find the order by its order ID
-    const order = await Order.find({ customerid: customerid });
-    console.log(order)
-    if (!order) {
-      return res.status(404).json({ error: "Order not found" });
+    // Find the orders by customer ID
+    const orders = await Order.find({ customerid });
+
+    if (orders.length === 0) {
+      return res.status(404).json({ error: "Orders not found" });
     }
 
-    // Return the order as a response
-    res.json(order);
+    // Return the orders as a response
+    res.json(orders);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
 
 router.post("/orders", async (req, res) => {
   try {
