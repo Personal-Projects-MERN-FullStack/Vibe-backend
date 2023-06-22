@@ -20,6 +20,10 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  Address:{
+    type: mongoose.Schema.Types.Mixed,
+    required :true
+  },
   paymentstatus: {
     type: String,
     enum: ["Pending", "Paid"],
