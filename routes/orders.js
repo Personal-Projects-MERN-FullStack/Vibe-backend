@@ -48,7 +48,7 @@ router.get("/getorderbycustomerid/:customerid", async (req, res) => {
     const customerid = req.params.customerid;
 
     // Find the order by its order ID
-    const order = await Order.findOne({ customerid: customerid });
+    const order = await Order.find({ customerid: customerid });
 
     if (!order) {
       return res.status(404).json({ error: "Order not found" });
