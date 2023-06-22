@@ -18,16 +18,16 @@ router.post("/saveproduct", async (req, res) => {
     res.status(500).json({ message: "Error saving product", error });
   }
 });
-router.get("/products", async (req, res) => {
-  try {
-    const products = await Product.find();
-    res.send(products);
-  } catch (error) {
-    res.status(500).send({
-      message: "An error occurred while fetching the products.",
-      error: error.message,
-    });
-  }
-});
+// router.get("/products", async (req, res) => {
+//   try {
+//     const products = await Product.find();
+//     res.send(products);
+//   } catch (error) {
+//     res.status(500).send({
+//       message: "An error occurred while fetching the products.",
+//       error: error.message,
+//     });
+//   }
+// });
 
 module.exports = router;
