@@ -46,6 +46,7 @@ router.get("/getorderbyorderid/:orderId", async (req, res) => {
 router.get("/getorderbycustomerid/:customerid", async (req, res) => {
   try {
     const customerid = req.params.customerid;
+    console.log(typeof customerid)
 
     // Find the orders by customer ID
     const orders = await Order.find({ customerid });
