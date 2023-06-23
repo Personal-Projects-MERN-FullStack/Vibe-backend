@@ -13,6 +13,7 @@ const productSchema = new mongoose.Schema({
       username: String,
       rating: Number,
       comment: String,
+      image:String
     },
   ],
   availability: {

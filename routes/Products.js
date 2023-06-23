@@ -18,16 +18,29 @@ router.post("/saveproduct", async (req, res) => {
     res.status(500).json({ message: "Error saving product", error });
   }
 });
-// router.get("/products", async (req, res) => {
-//   try {
-//     const products = await Product.find();
-//     res.send(products);
-//   } catch (error) {
-//     res.status(500).send({
-//       message: "An error occurred while fetching the products.",
-//       error: error.message,
-//     });
-//   }
-// });
+router.post('/products/:id/reviews', async (req, res) => {
+  const id = req.params.id;
+  const review = req.body;
+  console.log(review)
+  try {
+    // Find the product by ID
+    const product = await Product.findOne({id});
+
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    // Push the review into the product's reviews array
+    product.reviews.push(review);
+
+    // Save the updated product
+    await product.save();
+
+    res.json({ message: 'Review added successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 module.exports = router;
